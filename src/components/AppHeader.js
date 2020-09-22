@@ -8,7 +8,7 @@ export default class AppHeader extends Component {
       <h1>Store</h1>
       <div className="cart-component">
         <img src={cartIcon} className="cart-icon" alt="cart-icon" />
-        <p id="cart-number">0</p>
+        <p id="cart-number">{this.props.value}</p>
       </div>
     </section>
   }

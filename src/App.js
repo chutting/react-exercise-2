@@ -9,18 +9,17 @@ class App extends Component {
   }
 
   increment = () => {
-    this.states.num++;
+    this.setState({ num: this.state.num + 1 });
   }
 
   render() {
     return (
       <main className="app">
-        <AppHeader />
-        <AppMain onInrement={this.increment}/>
+        <AppHeader value={this.state.num} />
+        <AppMain onIncrement={this.increment}/>
       </main>
     );
   }
-
 
 }
 

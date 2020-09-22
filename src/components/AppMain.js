@@ -9,7 +9,7 @@ class PhoneItem extends Component {
       <img src={this.props.value.img_url ? this.props.value.img_url : placeholders} alt={this.props.value.name} />
       <div className='item-footer'>
         <p>{this.props.value.price}</p>
-        <button className='add-to-cart-btn'>add to cart</button>
+        <button className='add-to-cart-btn' onClick = {this.props.add}>add to cart</button>
       </div>
     </div>
   }
@@ -22,7 +22,7 @@ class HuaweiList extends Component {
       <div className = 'phone-list'>
         {
           this.props.value.map((phone, index) => {
-            return <PhoneItem value={phone} key={`iphone${index}`}></PhoneItem>;
+            return <PhoneItem value={phone} key={`iphone${index}`} add={this.props.onIncrement}></PhoneItem>;
           })
         }
       </div>
@@ -37,7 +37,7 @@ class IphoneList extends Component {
       <div className = 'phone-list'>
         {
           this.props.value.map((phone, index) => {
-            return <PhoneItem value={phone} key = {`huawei${index}`}></PhoneItem>;
+            return <PhoneItem value={phone} key = {`huawei${index}`}  add={this.props.onIncrement}></PhoneItem>;
           })
         }
       </div>
@@ -56,8 +56,8 @@ export default class AppMain extends Component {
 
   render() {
     return <section className = 'app-main'>
-      <IphoneList onInrement = {this.onInrement} value = {this.state.iphoneList}></IphoneList>
-      <HuaweiList onInrement = {this.onInrement} value = {this.state.huaweiList}></HuaweiList>
+      <IphoneList onIncrement = {this.props.onIncrement} value = {this.state.iphoneList}></IphoneList>
+      <HuaweiList onIncrement = {this.props.onIncrement} value = {this.state.huaweiList}></HuaweiList>
     </section>
   }
 
