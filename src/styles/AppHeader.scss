@@ -1,0 +1,30 @@
+@import 'variables';
+
+.app-header {
+  background-color: $support-blue;
+  display: flex;
+  flex-direction: row;
+  color: $white;
+  justify-content: space-between;
+  padding: $base-margin;
+}
+
+.cart-component {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.cart-icon {
+  width: $base-font-size;
+  height: $base-font-size;
+}
+
+#cart-number {
+  width: 1.4 * $base-font-size;
+  text-align: center;
+  background-color: $support-red;
+  border-radius: 0.4 * $base-font-size;
+  font-size: 8px;
+  margin-left: 5px;
+}

@@ -1,0 +1,52 @@
+@import 'variables';
+
+.app-main {
+}
+
+.phone-list {
+  display: flex;
+  flex-direction: row;
+}
+
+.phone-item {
+  display: flex;
+  flex-direction: column;
+  margin: $base-margin;
+}
+
+.phone-item img {
+  margin-top: $base-margin;
+  width: 150px;
+}
+
+.item-name {
+  font-weight: bold;
+}
+
+.item-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: $base-padding;
+}
+
+.add-to-cart-btn {
+  padding: 5px $base-padding;
+  background-color: $support-blue;
+  color: $white;
+  border-radius: 0;
+  border: none;
+  outline: none;
+  font-size: 10px;
+}
+
+.add-to-cart-btn:hover {
+  background-color: $second-blue;
+}
+
+.huawei h1, .iphone h1 {
+  margin-top: $base-margin;
+  margin-left: $base-margin;
+  font-size: $base-font-size + 8px;
+}
