@@ -15,29 +15,14 @@ class PhoneItem extends Component {
   }
 }
 
-class HuaweiList extends Component {
+class PhoneList extends Component {
   render() {
-    return <div className = 'huawei'>
-      <h1>HUAWEI</h1>
+    return <div className={this.props.value}>
+      <h1 className='category-name'>{this.props.value}</h1>
       <div className = 'phone-list'>
         {
-          this.props.value.map((phone, index) => {
-            return <PhoneItem value={phone} key={`iphone${index}`} add={this.props.onIncrement}></PhoneItem>;
-          })
-        }
-      </div>
-    </div>
-  }
-}
-
-class IphoneList extends Component {
-  render() {
-    return <div className = 'iphone'>
-      <h1>iPhone</h1>
-      <div className = 'phone-list'>
-        {
-          this.props.value.map((phone, index) => {
-            return <PhoneItem value={phone} key = {`huawei${index}`}  add={this.props.onIncrement}></PhoneItem>;
+          this.props.phoneList.map((phone, index) => {
+              return <PhoneItem value={phone} key = {`phone${index}`}  add={this.props.onIncrement}></PhoneItem>;
           })
         }
       </div>
@@ -49,15 +34,25 @@ export default class AppMain extends Component {
   constructor() {
     super();
     this.state = {
-      iphoneList : [],
-      huaweiList : []
+      // iphoneList : [],
+      // huaweiList : []
+      categoryList: [],
+      phoneList: []
     }
   }
 
   render() {
     return <section className = 'app-main'>
-      <IphoneList onIncrement = {this.props.onIncrement} value = {this.state.iphoneList}></IphoneList>
-      <HuaweiList onIncrement = {this.props.onIncrement} value = {this.state.huaweiList}></HuaweiList>
+      {
+        this.state.categoryList.map((category, index) => {
+          return <PhoneList onIncrement = {this.props.onIncrement}
+                            value = {category}
+                            key={`category${index}`}
+                            phoneList = {this.state.phoneList.filter(phone => phone.category === category)}>
+          </PhoneList>
+        })
+      }
+
     </section>
   }
 
@@ -69,10 +64,13 @@ export default class AppMain extends Component {
         Promise.reject('请求失败')
       }
     }).then(data => {
-      const iphoneList = data.filter(phone => phone.category === 'iPhone');
-      const huaweiList = data.filter(phone => phone.category === 'HUAWEI');
+
+      const categories = data.map(phone => phone.category);
+      const categoryList =[...new Set(categories)];
+      const phoneList = data;
       this.setState({
-        iphoneList, huaweiList
+        categoryList,
+        phoneList
       });
     }).catch(err => {
       console.log(err);
